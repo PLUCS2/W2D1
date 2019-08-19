@@ -11,10 +11,24 @@ class Board
     starting_board
   end 
 
+  def [](pos)
+    #[x,y] = pos 
+    x = pos[0]
+    y = pos[-1] 
+    @rows[x][y]
+  end 
+  
+  def []=(pos, value)
+    x = pos[0]
+    y = pos[-1] 
+    @rows[x][y] = value 
+  end 
+
   def move_piece(start_pos, end_pos)
-    raise EmptyPlaceError if @rows[start_pos[0]][start_pos[-1]] == @sentinel || start_pos.any? { |ele| ele < 0 || ele > 7}
+    raise EmptyPlaceError if self[start_pos] == @sentinel || start_pos.any? { |ele| ele < 0 || ele > 7}
     raise "error" if end_pos.any? {|ele| ele < 0 or ele > 7}
-    @rows[start_pos[0]][start_pos[-1]],@rows[end_pos[0]][end_pos[-1]] = @rows[end_pos[0]][end_pos[-1]], @rows[start_pos[0]][start_pos[-1]]
+    self[end_pos] = self[start_pos]
+    self[start_pos] = @sentinel 
 
   end 
 
