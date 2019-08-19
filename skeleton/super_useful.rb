@@ -1,5 +1,7 @@
 # PHASE 2
 class CoffeeError < StandardError; end
+class NotKnownLongEnough < StandardError; end
+class StringTooShort < StandardError; end
 
 def convert_to_int(str)
   begin
@@ -41,9 +43,33 @@ end
 # PHASE 4
 class BestFriend
   def initialize(name, yrs_known, fav_pastime)
-    @name = name
-    @yrs_known = yrs_known
-    @fav_pastime = fav_pastime
+    begin
+      raise StringTooShort if name.length < 1
+      @name = name
+    rescue StringTooShort
+       p "You didn't put in a name"
+      name = gets.chomp
+      retry
+    end 
+
+    begin 
+      raise NotKnownLongEnough if yrs_known < 5
+      @yrs_known = yrs_known
+    rescue NotKnownLongEnough
+      p "haven't known this friend long enough, to be best friends. Put in new Years known"
+      yrs_known = gets.chomp.to_i
+      retry
+    end
+
+    begin
+      raise StringTooShort if fav_pastime.length < 1
+      @fav_pastime = fav_pastime
+    rescue StringTooShort
+       p "You didn't put in a favorite pastime"
+      fav_pastime = gets.chomp
+      retry
+    end  
+    
   end
 
   def talk_about_friendship
