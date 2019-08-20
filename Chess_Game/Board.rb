@@ -29,7 +29,6 @@ class Board
     raise "error" if end_pos.any? {|ele| ele < 0 or ele > 7}
     self[end_pos] = self[start_pos]
     self[start_pos] = @sentinel 
-
   end 
 
   private 

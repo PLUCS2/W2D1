@@ -7,4 +7,30 @@ class Piece
     @pos = pos
   end
 
+  def to_s
+
+  end 
+
+  def empty?
+
+  end
+
+  def valid_moves
+    moves #this references a slidable/stepable 
+  end
+
+  def pos=(val)
+    @pos = val
+  end
+
+  def symbol 
+    @symbol # attr_reader for piece specific instance variable
+  end
+
+  private
+
+  def move_into_check?(end_pos)
+
+  end
+
 end 
