@@ -3,7 +3,7 @@ require_relative "Stepable"
 require_relative "Board"
 
 
-class King < Piece 
+class Knight < Piece 
   include Stepable
 
   def initialize(color, board, pos)

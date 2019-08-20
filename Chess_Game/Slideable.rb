@@ -1,6 +1,6 @@
 
 
-module Slidable 
+module Slideable 
 
   HORIZONTAL_DIRS = [[+1, 0], [0, +1], [-1, 0], [0, -1]]
   DIAGONAL_DIRS = [[+1, +1], [-1,-1], [+1, -1], [-1, +1]]
@@ -27,9 +27,9 @@ module Slidable
     ans = []
     current_position = @pos
     current_position[0] += dx
-      current_position[1] += dy
+    current_position[1] += dy
     # need to add logic for if position is filled with enemy piece 
-    until board[current_position] != @sentinel && board[current_position] != self # needs to know when to exit loop (current_position[0] < 0 || current_position[0] > 7) || (current_position[1] < 0 || current_position[1] > 7) || 
+    until board[current_position] != @sentinel # && board[current_position] != self # needs to know when to exit loop (current_position[0] < 0 || current_position[0] > 7) || (current_position[1] < 0 || current_position[1] > 7) || 
        ans << current_position 
       current_position[0] += dx
       current_position[1] += dy
