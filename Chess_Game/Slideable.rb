@@ -26,12 +26,18 @@ module Slidable
   def grow_unblocked_moves_in_dir(dx, dy) 
     ans = []
     current_position = @pos
+    current_position[0] += dx
+      current_position[1] += dy
     # need to add logic for if position is filled with enemy piece 
-    until Board[current_position] != @sentinel && Board[current_position] != self # needs to know when to exit loop (current_position[0] < 0 || current_position[0] > 7) || (current_position[1] < 0 || current_position[1] > 7) || 
+    until board[current_position] != @sentinel && board[current_position] != self # needs to know when to exit loop (current_position[0] < 0 || current_position[0] > 7) || (current_position[1] < 0 || current_position[1] > 7) || 
+       ans << current_position 
       current_position[0] += dx
       current_position[1] += dy
-      ans << current_position 
+    end
+    if board[current_position].color != self.color
+      ans << current_position
     end 
+    ans
   end
 
  def move_dirs

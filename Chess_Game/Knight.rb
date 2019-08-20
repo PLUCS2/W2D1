@@ -1,5 +1,6 @@
 require_relative "Piece"
 require_relative "Stepable"
+require_relative "Board"
 
 
 class King < Piece 

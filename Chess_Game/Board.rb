@@ -1,4 +1,5 @@
 require_relative "Piece"
+
 class EmptyPlaceError < StandardError; end
 
 class Board 
@@ -24,12 +25,41 @@ class Board
     @rows[x][y] = value 
   end 
 
-  def move_piece(start_pos, end_pos)
-    raise EmptyPlaceError if self[start_pos] == @sentinel || start_pos.any? { |ele| ele < 0 || ele > 7}
-    raise "error" if end_pos.any? {|ele| ele < 0 or ele > 7}
+  def move_piece(color, start_pos, end_pos)
+    raise EmptyPlaceError if self[start_pos] == @sentinel || !start_pos.valid_pos?
+    raise "error" if !end_pos.valid_pos?
     self[end_pos] = self[start_pos]
     self[start_pos] = @sentinel 
   end 
+
+  def valid_pos?(pos)
+    pos.between?(0,7)
+  end
+
+  def add_piece(piece, pos)
+    self[pos] = piece
+  end
+
+  def checkmate?(color)
+
+  end
+
+  def in_check?(color)
+  end
+
+  def find_king(color)
+    if color == :white 
+     @rows.each do |row|
+      row.each do |space|
+        #if space == Piece
+        #search for opposite color king
+      end
+    end
+  else
+    
+    end
+  
+  end
 
   private 
 

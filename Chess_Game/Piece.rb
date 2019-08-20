@@ -1,5 +1,6 @@
 
 class Piece 
+  attr_reader :color, :board, :pos
 
   def initialize(color, board, pos)
     @color = color
@@ -12,7 +13,7 @@ class Piece
   end 
 
   def empty?
-
+    self == @sentinel 
   end
 
   def valid_moves
