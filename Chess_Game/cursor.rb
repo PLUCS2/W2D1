@@ -76,8 +76,25 @@ class Cursor
   end
 
   def handle_key(key)
+    case key 
+    when "\r", " "
+      return @cursor_pos
+    when "h", "j", "k", "l"
+      update_pos(MOVES[KEYMAP[key]])
+      return nil
+    when "\u0003"
+      Process.exit(0)
+    end 
   end
 
   def update_pos(diff)
+      if (@cursor_pos[0] + diff[0]).between?(0, 7)
+        @cursor_pos[0] += diff[0]
+      end
+      if (@cursor_pos[1] + diff[1]).between?(0, 7)
+        @cursor_pos[1] += diff[1]
+      end
+      return @cursor_pos
   end
 end
+
